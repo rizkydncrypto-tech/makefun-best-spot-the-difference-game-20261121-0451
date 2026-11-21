@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twin Worlds — Spot the Difference</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">&#9673;</span>
+      <div>
+        <h1>Twin Worlds</h1>
+        <p class="tagline">Spot the Difference &middot; Temukan semua perbedaan!</p>
+      </div>
+    </div>
+    <div class="hud">
+      <div class="hud-item" id="level-box">
+        <span class="hud-label">Level</span>
+        <span class="hud-value" id="level-name">1 &middot; Taman Matahari</span>
+      </div>
+      <div class="hud-item hud-remaining" id="remaining-box">
+        <span class="hud-label">Sisa perbedaan</span>
+        <span class="hud-value big" id="remaining">5</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">Waktu</span>
+        <span class="hud-value" id="timer-text">2:00</span>
+        <div class="timer-bar"><div id="timer-fill"></div></div>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">Skor</span>
+        <span class="hud-value" id="score">0</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">Hint</span>
+        <span class="hud-value" id="hints-left">3</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="boards">
+    <section class="panel" id="panel-left">
+      <div class="panel-tag">Panel A &middot; Asli</div>
+      <canvas id="canvas-left" width="560" height="400" aria-label="Gambar asli"></canvas>
+    </section>
+    <section class="panel" id="panel-right">
+      <div class="panel-tag">Panel B &middot; Ada yang beda!</div>
+      <canvas id="canvas-right" width="560" height="400" aria-label="Gambar dengan perbedaan"></canvas>
+    </section>
+  </main>
+
+  <p class="progress" id="progress">Level 1 dari 3 &middot; 0 dari 22 perbedaan ditemukan</p>
+
+  <footer class="controls">
+    <button id="hint-btn" class="btn btn-hint" type="button">💡 Hint <kbd>H</kbd> <span id="hint-cost">(&minus;5 dtk)</span></button>
+    <button id="mute-btn" class="btn" type="button">🔊 Suara <kbd>M</kbd></button>
+    <button id="restart-btn" class="btn" type="button">↻ Ulang Level <kbd>R</kbd></button>
+    <p class="shortcuts">Klik perbedaan di panel mana pun &middot; klik salah &minus;5 detik &middot; temukan semua sebelum waktu habis!</p>
+  </footer>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <div id="overlay-start" class="overlay">
+    <div class="card">
+      <h2>Twin Worlds</h2>
+      <p class="card-sub">Spot the Difference</p>
+      <p>Dua gambar nyaris sama berdampingan. Ada <strong>5 &rarr; 7 &rarr; 10 perbedaan</strong> tersembunyi di tiga dunia: taman yang cerah, kemah di bawah bintang, dan terumbu karang.</p>
+      <ul class="howto">
+        <li>🖱️ <strong>Klik</strong> perbedaan di panel A atau B.</li>
+        <li>✅ Benar: +100 poin &amp; lingkaran hijau.</li>
+        <li>❌ Salah: &minus;5 detik.</li>
+        <li>💡 <strong>H</strong> untuk hint (&minus;5 detik, 3&times; per level).</li>
+        <li>⏱️ Selesaikan sebelum timer habis!</li>
+      </ul>
+      <button id="start-btn" class="btn btn-big" type="button">▶ Mulai Bermain</button>
+      <p class="card-note">Keyboard: <kbd>H</kbd> hint &middot; <kbd>M</kbd> suara &middot; <kbd>R</kbd> ulang level &middot; <kbd>Enter</kbd> mulai</p>
+    </div>
+  </div>
+
+  <div id="overlay-level" class="overlay hidden">
+    <div class="card">
+      <h2 id="level-done-title">Level Selesai!</h2>
+      <p id="level-done-text"></p>
+      <button id="next-btn" class="btn btn-big" type="button">Level Berikutnya ▶</button>
+    </div>
+  </div>
+
+  <div id="overlay-over" class="overlay hidden">
+    <div class="card">
+      <h2>Waktu Habis!</h2>
+      <p id="over-text"></p>
+      <button id="retry-btn" class="btn btn-big" type="button">↻ Coba Lagi</button>
+    </div>
+  </div>
+
+  <div id="overlay-win" class="overlay hidden">
+    <div class="card">
+      <h2>🎉 Kamu Menang!</h2>
+      <p id="win-text"></p>
+      <p class="card-sub">Semua 22 perbedaan ditemukan. Mata elang!</p>
+      <button id="again-btn" class="btn btn-big" type="button">↻ Main Lagi</button>
+    </div>
+  </div>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
